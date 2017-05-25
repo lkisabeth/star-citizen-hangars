@@ -5,3 +5,7 @@ body {
 .tealtext {
   color: rgb(125, 235, 193);
 }
+
+.jumbotron {
+    opacity:0.8 !important;
+}
