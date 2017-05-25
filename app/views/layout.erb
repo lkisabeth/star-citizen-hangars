@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Star Citizen Hangers</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <a class="navbar-brand" href="/">Star Citizen Hangers</a>
+      <% if logged_in? %>
+        <a class="btn btn-primary navbar-btn" href="/citizens/:slug" role="button"> Your Hanger </a>
+        <a class="btn btn-primary navbar-btn" href="/ships" role="button"> Browse Ships </a>
+        <a class="btn btn-danger navbar-btn" href="/logout" role="button"> Log Out </a>
+        <p class="navbar-text navbar-right">Welcome, Citizen <a class="navbar-link" href="/users/<%=current_user.slug%>"><%=current_user.username%></a> </p>
+      <% else %>
+        <a class="btn btn-success navbar-btn" href="/signup" role="button"> Sign Up </a>
+        <a class="btn btn-default navbar-btn" href="/login" role="button"> Log In </a>
+      <% end %>
+
+    </nav>
+    <div class="container-fluid">
+
+      <%= yield %>
+
+    </div>
+
+  </body>
+</html>
