@@ -1,3 +1,7 @@
 body {
   background: url(/carrier-bridge.jpg)
 }
+
+.tealtext {
+  color: rgb(125, 235, 193);
+}
