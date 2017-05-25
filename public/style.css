@@ -9,3 +9,10 @@ body {
 .jumbotron {
     opacity:0.8 !important;
 }
+
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 100px;
+    height: 100px;
+    padding-top: 0;
+}
