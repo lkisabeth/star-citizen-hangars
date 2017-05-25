@@ -1,14 +1,37 @@
-require "bundler/setup"
-require "star_citizen_hangers"
+ENV["SINATRA_ENV"] = "test"
+
+require_relative '../config/environment'
+require 'rack/test'
+require 'capybara/rspec'
+require 'capybara/dsl'
+
+if ActiveRecord::Migrator.needs_migration?
+  raise 'Migrations are pending. Run `rake db:migrate SINATRA_ENV=test` to resolve the issue.'
+end
+
+ActiveRecord::Base.logger = nil
 
 RSpec.configure do |config|
-  # Enable flags like --only-failures and --next-failure
-  config.example_status_persistence_file_path = ".rspec_status"
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.run_all_when_everything_filtered = true
+  config.filter_run :focus
+  config.include Rack::Test::Methods
+  config.include Capybara::DSL
+  DatabaseCleaner.strategy = :truncation
 
-  # Disable RSpec exposing methods globally on `Module` and `main`
-  config.disable_monkey_patching!
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
+  config.before do
+    DatabaseCleaner.clean
   end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
+
+  config.order = 'default'
 end
+
+def app
+  Rack::Builder.parse_file('config.ru').first
+end
+
+Capybara.app = app
