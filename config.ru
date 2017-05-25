@@ -6,4 +6,6 @@ end
 
 use Rack::MethodOverride
 
+use CitizensController
+use ShipsController
 run ApplicationController
