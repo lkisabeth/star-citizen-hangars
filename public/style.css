@@ -13,6 +13,10 @@ ul.nav a:hover {
   background-color: rgba(0,0,0,0.45);
 }
 
+.logout {
+  color: rgba(195, 24, 37, 0.40);
+}
+
 .navbar {
   background-color: rgba(0,0,0,0.40);
   position: fixed;

@@ -21,8 +21,8 @@ class ShipsController < ApplicationController
     if params[:content] == ""
       redirect to "/ships/new"
     else
-      citizen = Citizen.find_by_id(session[:user_id])
-      @ship = current_user.ships.create(name: params[:name], user_id: citizen.id)
+      citizen = Citizen.find_by_id(session[:id])
+      @ship = current_citizen.ships.create(name: params[:name], user_id: citizen.id)
       redirect to "/ships/#{@ship.id}"
     end
   end
@@ -39,7 +39,7 @@ class ShipsController < ApplicationController
   get '/ships/:id/edit' do
     if logged_in?
       @ship = Ship.find_by_id(params[:id])
-      if @ship.user_id == current_user.id
+      if @ship.citizen_id == current_citizen.id
        erb :'ships/edit'
       else
         redirect to '/ships'
@@ -53,7 +53,7 @@ class ShipsController < ApplicationController
     if params[:name] == ""
       redirect to "/ships/#{params[:id]}/edit"
     else
-      @ship = Tweet.find_by_id(params[:id])
+      @ship = Ship.find_by_id(params[:id])
       @ship.name = params[:name]
       @ship.save
       redirect to "/ships/#{@ship.id}"
@@ -63,7 +63,7 @@ class ShipsController < ApplicationController
   delete '/ships/:id/delete' do
     if logged_in?
       @ship = Ship.find_by_id(params[:id])
-      if @ship.user_id == current_user.id
+      if @ship.citizen_id == current_citizen.id
         @ship.delete
         redirect to '/ships'
       else

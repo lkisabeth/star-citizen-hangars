@@ -10,14 +10,17 @@
       <nav class="navbar navbar-transparent">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand tealtext" href="/"><img src="/star_citizen_logo.png" height="100"></a>
+            <a class="navbar-brand" href="/"><img src="/star_citizen_logo.png" height="100"></a>
           </div>
         <% if logged_in? %>
           <ul class="nav navbar-nav">
-            <li><a class="btn btn-primary navbar-btn" href="/citizens/:slug" role="button"> Your Hanger </a></li>
-            <li><a class="btn btn-primary navbar-btn" href="/ships" role="button"> Browse Ships </a></li>
-            <li><a class="btn btn-danger navbar-btn" href="/logout" role="button"> Log Out </a></li>
-            <li><p class="navbar-text navbar-right">Welcome, Citizen <a class="navbar-link" href="/users/<%=current_user.slug%>"><%=current_user.username%></a> </p></li>
+            <li><a class="" href="/citizens/:slug" role="button"> Your Hanger </a></li>
+            <li><a class="" href="/ships" role="button"> Browse Ships </a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><p class="tealtext">Welcome, <a class="navbar-link tealtext text-left" href="/citizens/<%=current_citizen.slug%>">Citizen <%=current_citizen.username.capitalize%></a> </p></li>
+            <li><a class="logout" href="/logout" role="button"> Log Out </a></li>
+
           </ul>
         <% else %>
           <ul class="nav navbar-nav navbar-right">

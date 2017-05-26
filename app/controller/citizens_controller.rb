@@ -20,11 +20,11 @@ class CitizensController < ApplicationController
 
   post '/signup' do
     if params[:username] == "" || params[:password] == ""
-      redirect to '/citizens/new'
+      redirect to '/signup'
     else
       @citizen = Citizen.new(:username => params[:username],  :password => params[:password])
-      @user.save
-      session[:user_id] = @citizen.id
+      @citizen.save
+      session[:id] = @citizen.id
       redirect to '/ships'
     end
   end
@@ -40,10 +40,10 @@ class CitizensController < ApplicationController
   post '/login' do
     citizen = Citizen.find_by(:username => params[:username])
     if citizen && citizen.authenticate(params[:password])
-      session[:user_id] = citizen.id
+      session[:id] = citizen.id
       redirect "/ships"
     else
-      redirect to '/signup'
+      redirect to '/login'
     end
   end
 
