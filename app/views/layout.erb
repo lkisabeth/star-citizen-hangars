@@ -5,32 +5,46 @@
     <title>Star Citizen Hangers</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/style.css">
-  <body>
-    <nav class="navbar navbar-transparent">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand tealtext" href="/"><img src="/star_citizen_logo.png" height="100"></a>
+  <body class="index">
+
+      <nav class="navbar navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand tealtext" href="/"><img src="/star_citizen_logo.png" height="100"></a>
+          </div>
+        <% if logged_in? %>
+          <ul class="nav navbar-nav">
+            <li><a class="btn btn-primary navbar-btn" href="/citizens/:slug" role="button"> Your Hanger </a></li>
+            <li><a class="btn btn-primary navbar-btn" href="/ships" role="button"> Browse Ships </a></li>
+            <li><a class="btn btn-danger navbar-btn" href="/logout" role="button"> Log Out </a></li>
+            <li><p class="navbar-text navbar-right">Welcome, Citizen <a class="navbar-link" href="/users/<%=current_user.slug%>"><%=current_user.username%></a> </p></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a class="tealtext" href="/signup"><span class="glyphicon glyphicon-user tealtext"></span> Sign Up</a></li>
+            <li><a class="tealtext" href="/login"><span class="glyphicon glyphicon-log-in tealtext"></span> Login   </a></li>
+          </ul>
+        <% end %>
         </div>
-      <% if logged_in? %>
-        <ul class="nav navbar-nav">
-          <li><a class="btn btn-primary navbar-btn" href="/citizens/:slug" role="button"> Your Hanger </a></li>
-          <li><a class="btn btn-primary navbar-btn" href="/ships" role="button"> Browse Ships </a></li>
-          <li><a class="btn btn-danger navbar-btn" href="/logout" role="button"> Log Out </a></li>
-          <li><p class="navbar-text navbar-right">Welcome, Citizen <a class="navbar-link" href="/users/<%=current_user.slug%>"><%=current_user.username%></a> </p></li>
-        </ul>
-      <% else %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login   </a></li>
-        </ul>
-      <% end %>
+      </nav>
+
+    <div id="wrap">
+      <div class="container-fluid">
+
+        <%= yield %>
+
       </div>
-    </nav>
-    <div class="container-fluid">
-
-      <%= yield %>
-
     </div>
+
+    <footer>
+        <div class="container" id="footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright tealtext">Copyright &copy; Luke Kisabeth 2016</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
   </body>
 </html>

@@ -1,5 +1,23 @@
 body {
-  background: url(/carrier-bridge.jpg)
+  background: url(/carrier-bridge.jpg);
+  padding-top: 150px;
+}
+
+ul.nav a:hover {
+  color: rgb(125, 235, 193);
+  background-color: rgba(203, 130, 86, 0.40);
+  !important;
+}
+
+#login {
+  background-color: rgba(0,0,0,0.45);
+}
+
+.navbar {
+  background-color: rgba(0,0,0,0.40);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .tealtext {
@@ -15,4 +33,51 @@ body {
     line-height: 80px;
     height: 80px;
     padding-top: 0;
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+  width: 50%;
+  height: 50%;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 40px;
+}
+
+#logo-container{
+  margin: auto;
+  margin-bottom: 10px;
+  width:200px;
+  height:30px;
+  background-image:url('http://placehold.it/200x30/000000/ffffff/&text=BRAND+LOGO');
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+  background: rgba(0,0,0,0.5);
 }
