@@ -10,30 +10,31 @@ class Ship < ActiveRecord::Base
   end
 
   def model
-    @model ||= doc.search("//*[@id='main']/div/div[3]/div/div[2]/div[2]/div[1]/ul/li/span[2]/span").text.strip
+    @model ||= doc.search("div[class='statbox title'] p").text.strip
   end
 
   def manufacturer
-    @manufacturer ||= doc.search("//*[@id='main']/div/div[1]/div[2]/ul/li[2]/span[2]").text.strip
+    @manufacturer ||= doc.search("div[class='statbox manufacturer'] p").text.strip
   end
 
   def role
-    @role ||= doc.search("//*[@id='main']/div/div[3]/div/div[2]/div[1]/div[1]/div/div/a/div/span").text.strip
+    @role ||= doc.search("div[class='statbox role'] p").text.strip
   end
 
   def description
-    @description ||= doc.search("//*[@id='main']/div/div[1]/div[2]/ul/li[1]/span[2]/a/span").text.strip
+    @description ||= doc.search("div[class='statbox description'] p span").text.strip
   end
 
   def production_state
-    @production_state ||= doc.search("//*[@id='main']/div/div[1]/div[2]/ul/li[3]/span[2]").text.strip
+    @production_state ||= doc.search("div[class='statbox role'] p").text.strip
   end
 
   private
     def self.scrape_ships
-      @doc = Nokogiri::HTML(open('https://robertsspaceindustries.com/ship-specs', 'User-Agent'=>'chrome'))
-      names = doc.search("div[class='basic_stat product_title'] a")
-      names.collect{|title| new(title.text.strip, "http://www.metacritic.com#{title.attr("href")}")}
+      @doc = Nokogiri::HTML(open("https://robertsspaceindustries.com/ship-specs"))
+      binding.pry
+      ships = @doc.search("div[class='ship']")
+      ships.collect{|ship| new(model: self.model, manufacturer: self.manufacturer, role: self.role, description: self.description, production_state: self.production_state)}
     end
 
     def doc
