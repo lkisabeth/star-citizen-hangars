@@ -7,17 +7,24 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
   <body>
     <nav class="navbar navbar-transparent">
-      <a class="navbar-brand tealtext" href="/"><img src="/star_citizen_logo.png" height="100"></a>
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand tealtext" href="/"><img src="/star_citizen_logo.png" height="100"></a>
+        </div>
       <% if logged_in? %>
-        <a class="btn btn-primary navbar-btn" href="/citizens/:slug" role="button"> Your Hanger </a>
-        <a class="btn btn-primary navbar-btn" href="/ships" role="button"> Browse Ships </a>
-        <a class="btn btn-danger navbar-btn" href="/logout" role="button"> Log Out </a>
-        <p class="navbar-text navbar-right">Welcome, Citizen <a class="navbar-link" href="/users/<%=current_user.slug%>"><%=current_user.username%></a> </p>
+        <ul class="nav navbar-nav">
+          <li><a class="btn btn-primary navbar-btn" href="/citizens/:slug" role="button"> Your Hanger </a></li>
+          <li><a class="btn btn-primary navbar-btn" href="/ships" role="button"> Browse Ships </a></li>
+          <li><a class="btn btn-danger navbar-btn" href="/logout" role="button"> Log Out </a></li>
+          <li><p class="navbar-text navbar-right">Welcome, Citizen <a class="navbar-link" href="/users/<%=current_user.slug%>"><%=current_user.username%></a> </p></li>
+        </ul>
       <% else %>
-        <a class="btn btn-success navbar-btn" href="/signup" role="button"> Sign Up </a>
-        <a class="btn btn-default navbar-btn" href="/login" role="button"> Log In </a>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login   </a></li>
+        </ul>
       <% end %>
-
+      </div>
     </nav>
     <div class="container-fluid">
 

@@ -2,12 +2,13 @@
   <%= message %>
 <% end %>
 
-
-<h3 class="tealtext">Become a Citizen</h3>
-<form action="/signup" method="POST">
-  <label class="tealtext" for="username">Username: </label>
-  <input type="text" name="username" id="username"><br>
-  <label class="tealtext" for="password">Password: </label>
-  <input type="password" name="password" id="password">
-  <input class="btn btn-primary" type="submit" value="Submit">
-</form>
+<div class="container col-xs-4 col-xs-offset-4">
+  <h3 class="tealtext">Become a Citizen</h3>
+    <form action="/signup" method="POST">
+      <label class="tealtext" for="username">Username: </label>
+      <input type="text" name="username" id="username"><br>
+      <label class="tealtext" for="password">Password: </label>
+      <input type="password" name="password" id="password">
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+</div>
