@@ -32,10 +32,9 @@ class Ship < ActiveRecord::Base
   private
     def self.scrape_ships
       @doc = Nokogiri::HTML(open('https://robertsspaceindustries.com/ship-specs', 'User-Agent'=>'chrome'))
-      ships = @doc.css("")
+      ships = @doc.css("div[class='ship']")
       binding.pry
-      ships.collect{|ship| save(model: self.model, manufacturer: self.manufacturer, role: self.role, description: self.description, production_state: self.production_state)}
-
+      ships.collect{|ship| Ship.create(model: self.model, manufacturer: self.manufacturer, role: self.role, description: self.description, production_state: self.production_state)}
     end
 
     def doc
