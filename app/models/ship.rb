@@ -34,7 +34,7 @@ class Ship < ActiveRecord::Base
       @doc = Nokogiri::HTML(open("https://robertsspaceindustries.com/ship-specs"))
       binding.pry
       ships = @doc.search("div[class='ship']")
-      ships.collect{|ship| new(model: self.model, manufacturer: self.manufacturer, role: self.role, description: self.description, production_state: self.production_state)}
+      ships.collect{|ship| save(model: self.model, manufacturer: self.manufacturer, role: self.role, description: self.description, production_state: self.production_state)}
     end
 
     def doc

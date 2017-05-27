@@ -14,12 +14,12 @@
           </div>
         <% if logged_in? %>
           <ul class="nav navbar-nav">
-            <li><a class="" href="/citizens/:slug" role="button"> Your Hanger </a></li>
+            <li><a class="" href="/citizens/<%= current_citizen.slug %>" role="button"> Your Hanger </a></li>
             <li><a class="" href="/ships" role="button"> Browse Ships </a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><p class="tealtext">Welcome, <a class="navbar-link tealtext text-left" href="/citizens/<%=current_citizen.slug%>">Citizen <%=current_citizen.username.capitalize%></a> </p></li>
-            <li><a class="logout" href="/logout" role="button"> Log Out </a></li>
+            <li><a href="/logout" role="button"> Log Out </a></li>
 
           </ul>
         <% else %>
@@ -43,7 +43,7 @@
         <div class="container" id="footer">
             <div class="row">
                 <div class="col-md-4">
-                    <span class="copyright tealtext">Copyright &copy; Luke Kisabeth 2016</span>
+                    <span class="copyright tealtext">Copyright &copy; Luke Kisabeth 2017</span>
                 </div>
             </div>
         </div>
