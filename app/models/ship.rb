@@ -10,31 +10,32 @@ class Ship < ActiveRecord::Base
   end
 
   def model
-    @model ||= doc.search("div[class='statbox title'] p").text.strip
+    @model ||= doc.css("div[class='statbox title'] p").text.strip
   end
 
   def manufacturer
-    @manufacturer ||= doc.search("div[class='statbox manufacturer'] p").text.strip
+    @manufacturer ||= doc.css("div[class='statbox manufacturer'] p").text.strip
   end
 
   def role
-    @role ||= doc.search("div[class='statbox role'] p").text.strip
+    @role ||= doc.css("div[class='statbox role'] p").text.strip
   end
 
   def description
-    @description ||= doc.search("div[class='statbox description'] p span").text.strip
+    @description ||= doc.css("div[class='statbox description'] p span").text.strip
   end
 
   def production_state
-    @production_state ||= doc.search("div[class='statbox role'] p").text.strip
+    @production_state ||= doc.css("div[class='statbox role'] p").text.strip
   end
 
   private
     def self.scrape_ships
-      @doc = Nokogiri::HTML(open("https://robertsspaceindustries.com/ship-specs"))
+      @doc = Nokogiri::HTML(open('https://robertsspaceindustries.com/ship-specs', 'User-Agent'=>'chrome'))
+      ships = @doc.css("")
       binding.pry
-      ships = @doc.search("div[class='ship']")
       ships.collect{|ship| save(model: self.model, manufacturer: self.manufacturer, role: self.role, description: self.description, production_state: self.production_state)}
+
     end
 
     def doc
