@@ -1,0 +1,16 @@
+<h1 class="tealtext top-header">Available Ships</h1>
+
+<% Ship.all.each do |ship| %>
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h4 class="mb-1 ship-title"><%=ship.model%></h4>
+        <p class="mb-1 ship-text">Manufacturer: <%=ship.manufacturer%></p>
+      </div>
+      <p class="mb-1 ship-text"><%=ship.description%></p>
+      <small class="ship-text">Role: <%=ship.role%>       |</small>
+      <small class="tealtext">    <%=ship.production_state%></small>
+
+    </a>
+  </div>
+<% end %>
