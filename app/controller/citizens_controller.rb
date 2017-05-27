@@ -25,7 +25,7 @@ class CitizensController < ApplicationController
       @citizen = Citizen.new(:username => params[:username],  :password => params[:password])
       @citizen.save
       session[:id] = @citizen.id
-      redirect to '/ships'
+      redirect to '/'
     end
   end
 
@@ -33,7 +33,7 @@ class CitizensController < ApplicationController
     if !logged_in?
       erb :'citizens/login'
     else
-      redirect '/ships'
+      redirect '/'
     end
   end
 
@@ -41,7 +41,7 @@ class CitizensController < ApplicationController
     citizen = Citizen.find_by(:username => params[:username])
     if citizen && citizen.authenticate(params[:password])
       session[:id] = citizen.id
-      redirect "/ships"
+      redirect "/"
     else
       redirect to '/login'
     end
@@ -52,7 +52,7 @@ class CitizensController < ApplicationController
       session.destroy
       redirect to '/login'
     else
-      redirect to '/'
+      redirect to '/login'
     end
   end
 
