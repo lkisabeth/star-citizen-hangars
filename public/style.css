@@ -51,8 +51,16 @@ ul.nav a:hover {
   color: rgb(125, 235, 193);
 }
 
+.whitetext {
+  color: white;
+}
+
+.list-group-item {
+  width: 80%;
+}
+
 .jumbotron {
-    opacity:0.8 !important;
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .navbar-brand,
