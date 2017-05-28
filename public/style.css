@@ -1,6 +1,8 @@
 body {
   background: url(/carrier-bridge.jpg);
   padding-top: 120px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 ul.nav a:hover {
