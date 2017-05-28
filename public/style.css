@@ -11,6 +11,14 @@ ul.nav a:hover {
   !important;
 }
 
+.blackbg {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.profile {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 .top-header {
    border-bottom: 2px solid;
 }
@@ -61,6 +69,11 @@ ul.nav a:hover {
   width: 80%;
 }
 
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
 .jumbotron {
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -75,7 +88,7 @@ ul.nav a:hover {
 .Absolute-Center {
   margin: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
+  top: 0; right: 0; bottom: 0; left: 0;
 }
 
 .Absolute-Center.is-Responsive {

@@ -1,1 +1,24 @@
-@ship
+<div class="container">
+        <div class="row container vertical-center">
+
+            <div class="col-md-9 container">
+
+                <div class="thumbnail blackbg">
+                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                    <div class="caption-full">
+                        <h4 class="pull-right tealtext">Prices Coming Soon</h4>
+                        <h2 class="whitetext"><%= @ship.model %></h4>
+                        <p class="ship-text">Manufacturer: <%= @ship.manufacturer %> </p>
+                        <p class="ship-text"><%= @ship.description %></p>
+                        <p class="ship-text">Role: <%= @ship.role %></p>
+                        <p class="tealtext"><%= @ship.production_state %></p>
+                    </div>
+
+                      <a href="/citizens/<%= current_citizen.id %>" class="btn btn-primary vertical-center">Claim this Ship</a>
+
+                </div>
+
+            </div>
+
+        </div>
+</div>
