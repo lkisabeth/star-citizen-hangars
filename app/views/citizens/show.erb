@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <h1 class="tealtext top-header">Your Hanger</h1>
+  <h1 class="tealtext top-header">Your Hangar</h1>
   <% my_ships = Ship.all.collect{|ship| ship if ship.id == @citizen.id} %>
   <% my_ships.each do |ship| %>
     <% if ship %>
