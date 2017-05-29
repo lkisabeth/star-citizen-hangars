@@ -19,6 +19,12 @@ ul.nav a:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.citizen-card {
+  width: 60%;
+  height: 20%;
+  margin-bottom: 30px;
+}
+
 .top-header {
    border-bottom: 2px solid;
 }
@@ -37,7 +43,12 @@ ul.nav a:hover {
 }
 
 .list-group-item {
-  background-color: rgba(0,0,0,0.80)
+  background-color: rgba(0,0,0,0.80);
+  width: 80%;
+}
+
+.col-center {
+  margin: 0 auto;
 }
 
 #login {
@@ -63,10 +74,6 @@ ul.nav a:hover {
 
 .whitetext {
   color: white;
-}
-
-.list-group-item {
-  width: 80%;
 }
 
 .vertical-center {
