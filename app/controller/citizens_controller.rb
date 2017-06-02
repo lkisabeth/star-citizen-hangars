@@ -10,6 +10,15 @@ class CitizensController < ApplicationController
     erb :'citizens/edit'
   end
 
+  post '/citizens/:slug/edit' do
+      @citizen = Citizen.find_by_slug(params[:slug])
+      @citizen.username = params[:username] if params[:username] != ""
+      @citizen.password = params[:password] if params[:password] != ""
+      @citizen.save
+      redirect to '/'
+  end
+
+
   get '/signup' do
     if !logged_in?
       erb :'citizens/new'
