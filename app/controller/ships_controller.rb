@@ -68,7 +68,22 @@ class ShipsController < ApplicationController
     end
   end
 
-  delete '/ships/:id/delete' do
+  post '/ships/:id/list' do
+    if logged_in?
+      @ship = Ship.find_by_id(params[:id])
+      if @ship.citizen_id == current_citizen.id
+        @ship.citizen_id = nil
+        @ship.save
+        redirect to '/ships'
+      else
+        redirect to '/ships'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
+  post '/ships/:id/delete' do
     if logged_in?
       @ship = Ship.find_by_id(params[:id])
       if @ship.citizen_id == current_citizen.id
