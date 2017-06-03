@@ -11,7 +11,9 @@
             <p class="ship-text">Role: <%= @ship.role %></p>
             <p class="tealtext"><%= @ship.production_state %></p>
           </div>
-        <a href="/citizens/<%= current_citizen.slug %>" class="btn btn-primary vertical-center">Claim this Ship</a>
+        <form class="" action="/ships/<%= @ship.id %> " method="post">
+          <button class="btn btn-primary vertical-center">Claim this Ship</button>
+        </form>
       </div>
     </div>
   </div>

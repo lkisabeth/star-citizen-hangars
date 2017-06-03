@@ -36,6 +36,14 @@ class ShipsController < ApplicationController
     end
   end
 
+  post '/ships/:id' do
+    @citizen = Citizen.find_by_id(session[:id])
+    @ship = Ship.find_by_id(params[:id])
+    @ship.citizen_id = @citizen.id
+    @ship.save
+    redirect to '/ships'
+  end
+
   get '/ships/:id/edit' do
     if logged_in?
       @ship = Ship.find_by_id(params[:id])

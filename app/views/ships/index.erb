@@ -1,6 +1,7 @@
 <h1 class="tealtext top-header">Available Ships</h1>
 
 <% Ship.all.each do |ship| %>
+  <% if ship.citizen_id == nil %>
   <div class="list-group">
     <a href="/ships/<%= ship.id%>" class="list-group-item list-group-item-action flex-column align-items-start container">
       <div class="d-flex w-100 justify-content-between">
@@ -12,4 +13,5 @@
       <small class="tealtext">    <%=ship.production_state%></small>
     </a>
   </div>
+  <% end %>
 <% end %>
