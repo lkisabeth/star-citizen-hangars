@@ -23,7 +23,7 @@ class ShipsController < ApplicationController
     else
       citizen = Citizen.find_by_id(session[:id])
       @ship = current_citizen.ships.create(model: params[:model], manufacturer: params[:manufacturer], description: params[:description], role: params[:role], production_state: params[:production_state], citizen_id: citizen.id)
-      redirect to "/ships"
+      redirect to "/"
     end
   end
 
