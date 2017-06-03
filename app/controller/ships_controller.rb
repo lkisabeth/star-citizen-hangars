@@ -18,7 +18,7 @@ class ShipsController < ApplicationController
   end
 
   post '/ships' do
-    if params[:content] == ""
+    if params[:model] == "" || params[:manufacturer] == ""
       redirect to "/ships/new"
     else
       citizen = Citizen.find_by_id(session[:id])
