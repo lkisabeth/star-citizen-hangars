@@ -41,7 +41,7 @@ class ShipsController < ApplicationController
     @ship = Ship.find_by_id(params[:id])
     @ship.citizen_id = @citizen.id
     @ship.save
-    redirect to '/ships'
+    redirect to "/citizens/#{@citizen.slug}"
   end
 
   get '/ships/:id/edit' do

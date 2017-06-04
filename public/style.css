@@ -7,7 +7,8 @@ body {
 
 ul.nav a:hover {
   color: rgb(125, 235, 193);
-  background-color: rgba(203, 130, 86, 0.40);
+  /*background-color: rgba(203, 130, 86, 0.40);*/
+  background-color: rgba(26, 57, 86, 0.8);
   !important;
 }
 
@@ -31,7 +32,8 @@ ul.nav a:hover {
 
 .list-group a:hover {
   color: black;
-  background-color: rgba(125, 235, 193, 0.75)
+  /*background-color: rgba(125, 235, 193, 0.75)*/
+  background-color: rgba(26, 57, 86, 0.8);
 }
 
 .ship-text {

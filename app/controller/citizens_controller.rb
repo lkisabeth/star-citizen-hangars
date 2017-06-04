@@ -10,12 +10,12 @@ class CitizensController < ApplicationController
     erb :'citizens/edit'
   end
 
-  patch '/citizens/:slug/edit' do
+  post '/citizens/:slug/edit' do
       @citizen = Citizen.find_by_slug(params[:slug])
       @citizen.username = params[:username] if params[:username] != ""
       @citizen.password = params[:password] if params[:password] != ""
       @citizen.save
-      redirect to '/'
+      redirect to "/citizens/#{@citizen.slug}"
   end
 
 
