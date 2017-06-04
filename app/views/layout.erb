@@ -15,7 +15,7 @@
         <% if logged_in? %>
           <ul class="nav navbar-nav">
             <li><a class="" href="/citizens/<%= current_citizen.slug %>" role="button"> Your Hangar </a></li>
-            <li><a class="" href="/ships" role="button"> Browse Ships </a></li>
+            <li><a class="" href="/ships" role="button"> Ship Market </a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><p class="tealtext">Welcome, <a class="navbar-link tealtext text-left" href="/citizens/<%=current_citizen.slug%>">Citizen <%=current_citizen.username.capitalize%></a> </p></li>

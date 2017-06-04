@@ -11,15 +11,27 @@
         <i class="glyphicon glyphicon-globe"></i><a href="http://www.robertsspaceindustries.com"> www.robertsspaceindustries.com</a>
         <br />
         <i class="glyphicon glyphicon-gift"></i> More features coming soon!</p>
-
-      <div class="btn-group">
-        <a type="button" class="btn btn-primary" href="/citizens/<%= @citizen.slug %>/edit">
-          Edit</a>
-      </div>
+      <% if current_citizen.id == @citizen.id %>
+        <div class="btn-group">
+          <a type="button" class="btn btn-primary" href="/citizens/<%= @citizen.slug %>/edit">
+            Edit</a>
+        </div>
+      <% end %>
     </div>
   </div>
 
-  <h1 class="tealtext top-header">Your Hangar</h1>
+  <% if current_citizen.id == @citizen.id %>
+    <div class="container text-center">
+      <a href="/ships/new" class="btn btn-primary btn-lg">Create a New Ship</a>
+    </div>
+  <% end %>
+
+  <% if current_citizen.id == @citizen.id %>
+    <h1 class="tealtext top-header">Your Hangar</h1>
+  <% else %>
+    <h1 class="tealtext top-header"><%= @citizen.username.capitalize %>'s Hangar</h1>
+  <% end %>
+
   <% my_ships = Ship.all.collect{|ship| ship if ship.citizen_id == @citizen.id} %>
   <% my_ships.each do |ship| %>
     <% if ship %>
@@ -32,12 +44,16 @@
         <p class="mb-1 ship-text"><%=ship.description%></p>
         <small class="ship-text">Role: <%=ship.role%>  |</small>
         <small class="tealtext">    <%=ship.production_state%></small><br>
-        <form class="" action="/ships/<%= ship.id %>/list" method="post">
-          <button class="btn btn-primary pull-right" type="submit" name="button">List on the Market</button>
-        </form>
-        <form class="" action="/ships/<%= ship.id %>/delete" method="post">
-          <button class="btn btn-danger pull-right" type="delete" name="button">Salvage (Destroy)</button>
-        </form>
+
+        <% if current_citizen.id == @citizen.id %>
+          <form class="" action="/ships/<%= ship.id %>/list" method="post">
+            <button class="btn btn-primary pull-right" type="submit" name="button">List on the Market</button>
+          </form>
+          <form class="" action="/ships/<%= ship.id %>/delete" method="post">
+            <button class="btn btn-danger pull-right" type="delete" name="button">Salvage (Destroy)</button>
+          </form>
+        <% end %>
+
       </div>
     </div>
     <% end %>

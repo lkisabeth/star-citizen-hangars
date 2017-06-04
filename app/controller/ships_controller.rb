@@ -21,9 +21,8 @@ class ShipsController < ApplicationController
     if params[:model] == "" || params[:manufacturer] == ""
       redirect to "/ships/new"
     else
-      citizen = Citizen.find_by_id(session[:id])
-      @ship = current_citizen.ships.create(model: params[:model], manufacturer: params[:manufacturer], description: params[:description], role: params[:role], production_state: params[:production_state], citizen_id: citizen.id)
-      redirect to "/"
+      @ship = current_citizen.ships.create(model: params[:model], manufacturer: params[:manufacturer], description: params[:description], role: params[:role], production_state: params[:production_state], citizen_id: current_citizen.id)
+      redirect to "/citizens/#{current_citizen.slug}"
     end
   end
 
@@ -37,11 +36,10 @@ class ShipsController < ApplicationController
   end
 
   post '/ships/:id' do
-    @citizen = Citizen.find_by_id(session[:id])
     @ship = Ship.find_by_id(params[:id])
-    @ship.citizen_id = @citizen.id
+    @ship.citizen_id = current_citizen.id
     @ship.save
-    redirect to "/citizens/#{@citizen.slug}"
+    redirect to "/citizens/#{current_citizen.slug}"
   end
 
   get '/ships/:id/edit' do
@@ -88,7 +86,7 @@ class ShipsController < ApplicationController
       @ship = Ship.find_by_id(params[:id])
       if @ship.citizen_id == current_citizen.id
         @ship.delete
-        redirect to '/ships'
+        redirect to "/citizens/#{current_citizen.slug}"
       else
         redirect to '/ships'
       end

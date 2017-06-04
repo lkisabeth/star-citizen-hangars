@@ -1,21 +1,33 @@
 class CitizensController < ApplicationController
 
   get '/citizens/:slug' do
-    @citizen = Citizen.find_by_slug(params[:slug])
-    erb :'citizens/show'
+    if logged_in?
+      @citizen = Citizen.find_by_slug(params[:slug])
+      erb :'citizens/show'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/citizens/:slug/edit' do
     @citizen = Citizen.find_by_slug(params[:slug])
-    erb :'citizens/edit'
+    if logged_in? && @citizen.id == current_citizen.id
+      erb :'citizens/edit'
+    else
+      redirect to '/login'
+    end
   end
 
   post '/citizens/:slug/edit' do
       @citizen = Citizen.find_by_slug(params[:slug])
-      @citizen.username = params[:username] if params[:username] != ""
-      @citizen.password = params[:password] if params[:password] != ""
-      @citizen.save
-      redirect to "/citizens/#{@citizen.slug}"
+      if logged_in? && @citizen.id == current_citizen.id
+        @citizen.username = params[:username] if params[:username] != ""
+        @citizen.password = params[:password] if params[:password] != ""
+        @citizen.save
+        redirect to "/citizens/#{@citizen.slug}"
+      else
+        redirect to '/'
+      end
   end
 
 
