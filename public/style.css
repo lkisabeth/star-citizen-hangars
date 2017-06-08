@@ -12,6 +12,12 @@ ul.nav a:hover {
   !important;
 }
 
+a {
+transition: background-color .3s ease-in-out;
+-moz-transition: background-color .3s ease-in-out;
+-webkit-transition: background-color .3s ease-in-out;
+}
+
 .blackbg {
   background-color: rgba(0, 0, 0, 0.8);
 }
