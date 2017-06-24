@@ -8,8 +8,7 @@ test:
 
 production:
   adapter: postgresql
-  database: d8hvldpq3d4ock
-  username: kkwphefkmktlbn
-  port: 5432
-  password: a3a700f56ad25153522598488c8ba220a0f114114701cd85f97497e47b2a6216
+  database: sch_database
+  username: username
+  password: password
   host: localhost
