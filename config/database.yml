@@ -12,4 +12,4 @@ production:
   username: kkwphefkmktlbn
   port: 5432
   password: a3a700f56ad25153522598488c8ba220a0f114114701cd85f97497e47b2a6216
-  host: ec2-107-22-250-33.compute-1.amazonaws.com
+  host: localhost
