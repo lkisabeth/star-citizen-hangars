@@ -20,8 +20,4 @@ group :test do
   gem 'database_cleaner'
 end
 
-group :development, :test do
-  gem 'sqlite3'
-end
-
 gem 'pg', group: :production
