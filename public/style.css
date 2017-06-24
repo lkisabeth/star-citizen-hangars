@@ -1,5 +1,5 @@
 body {
-  background: url(/carrier-bridge.jpg); /* lower case img src for heroku */
+  background: url(/background.jpg); /* lower case img src for heroku */
   padding-top: 120px;
   background-repeat: no-repeat;
   background-attachment: fixed;
