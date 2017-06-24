@@ -1,38 +1,36 @@
 class CitizensController < ApplicationController
 
   get '/citizens/:slug' do
-    if logged_in?
-      @citizen = Citizen.find_by_slug(params[:slug])
-      erb :'citizens/show'
-    else
-      redirect to '/login'
-    end
+    authenticate_user
+    @citizen = Citizen.find_by_slug(params[:slug])
+    erb :'citizens/show'
   end
 
   get '/citizens/:slug/edit' do
+    authenticate_user
     @citizen = Citizen.find_by_slug(params[:slug])
-    if logged_in? && @citizen.id == current_citizen.id
+    if @citizen == current_citizen
       erb :'citizens/edit'
-    else
-      redirect to '/login'
+    elsif
+      redirect to '/'
     end
   end
 
-  post '/citizens/:slug/edit' do
-      @citizen = Citizen.find_by_slug(params[:slug])
-      if logged_in? && @citizen.id == current_citizen.id
-        @citizen.username = params[:username] if params[:username] != ""
-        @citizen.password = params[:password] if params[:password] != ""
-        @citizen.save
-        redirect to "/citizens/#{@citizen.slug}"
-      else
-        redirect to '/'
-      end
+  put '/citizens/:slug/edit' do
+    @citizen = Citizen.find_by_slug(params[:slug])
+    if logged_in? && @citizen.id == current_citizen.id
+      @citizen.username = params[:username] if params[:username] != ""
+      @citizen.password = params[:password] if params[:password] != ""
+      @citizen.save
+      redirect to "/citizens/#{@citizen.slug}"
+    else
+      redirect to '/'
+    end
   end
-
 
   get '/signup' do
     if !logged_in?
+      @citizen = Citizen.new
       erb :'citizens/new'
     else
       redirect to '/citizens/show'
@@ -40,13 +38,12 @@ class CitizensController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username] == "" || params[:password] == ""
-      redirect to '/signup'
-    else
-      @citizen = Citizen.new(:username => params[:username],  :password => params[:password])
-      @citizen.save
-      session[:id] = @citizen.id
+    @citizen = Citizen.new(params)
+    if @citizen.save
+      session[:user_id] = @citizen.id
       redirect to '/'
+    else
+      erb :'citizens/new'
     end
   end
 
@@ -61,7 +58,7 @@ class CitizensController < ApplicationController
   post '/login' do
     citizen = Citizen.find_by(:username => params[:username])
     if citizen && citizen.authenticate(params[:password])
-      session[:id] = citizen.id
+      session[:user_id] = citizen.id
       redirect "/"
     else
       redirect to '/login'
@@ -69,12 +66,9 @@ class CitizensController < ApplicationController
   end
 
   get '/logout' do
-    if logged_in?
-      session.destroy
-      redirect to '/login'
-    else
-      redirect to '/login'
-    end
+    authenticate_user
+    session.destroy
+    redirect to '/login'
   end
 
 end

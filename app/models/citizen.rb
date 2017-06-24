@@ -3,6 +3,8 @@ class Citizen < ActiveRecord::Base
 
   has_secure_password
 
+  validates :username, presence: true, uniqueness: true
+
   def slug
     username.downcase.gsub(" ","-")
   end

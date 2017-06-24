@@ -1,20 +1,14 @@
 class ShipsController < ApplicationController
 
   get '/ships' do
-    if logged_in?
-      @ships = Ship.all
-      erb :'ships/index'
-    else
-      redirect to '/login'
-    end
+    authenticate_user
+    @ships = Ship.all
+    erb :'ships/index'
   end
 
   get '/ships/new' do
-    if logged_in?
-      erb :'ships/new'
-    else
-      redirect to '/login'
-    end
+    authenticate_user
+    erb :'ships/new'
   end
 
   post '/ships' do
@@ -27,12 +21,9 @@ class ShipsController < ApplicationController
   end
 
   get '/ships/:id' do
-    if logged_in?
-      @ship = Ship.find_by_id(params[:id])
-      erb :'ships/show'
-    else
-      redirect to '/login'
-    end
+    authenticate_user
+    @ship = Ship.find_by_id(params[:id])
+    erb :'ships/show'
   end
 
   post '/ships/:id' do
@@ -43,15 +34,12 @@ class ShipsController < ApplicationController
   end
 
   get '/ships/:id/edit' do
-    if logged_in?
-      @ship = Ship.find_by_id(params[:id])
-      if @ship.citizen_id == current_citizen.id
-       erb :'ships/edit'
-      else
-        redirect to '/ships'
-      end
+    authenticate_user
+    @ship = Ship.find_by_id(params[:id])
+    if @ship.citizen_id == current_citizen.id
+      erb :'ships/edit'
     else
-      redirect to '/login'
+      redirect to '/ships'
     end
   end
 
@@ -67,31 +55,25 @@ class ShipsController < ApplicationController
   end
 
   post '/ships/:id/list' do
-    if logged_in?
-      @ship = Ship.find_by_id(params[:id])
-      if @ship.citizen_id == current_citizen.id
-        @ship.citizen_id = nil
-        @ship.save
-        redirect to '/ships'
-      else
-        redirect to '/ships'
-      end
+    authenticate_user
+    @ship = Ship.find_by_id(params[:id])
+    if @ship.citizen_id == current_citizen.id
+      @ship.citizen_id = nil
+      @ship.save
+      redirect to '/ships'
     else
-      redirect to '/login'
+      redirect to '/ships'
     end
   end
 
   post '/ships/:id/delete' do
-    if logged_in?
-      @ship = Ship.find_by_id(params[:id])
-      if @ship.citizen_id == current_citizen.id
-        @ship.delete
-        redirect to "/citizens/#{current_citizen.slug}"
-      else
-        redirect to '/ships'
-      end
+    authenticate_user
+    @ship = Ship.find_by_id(params[:id])
+    if @ship.citizen_id == current_citizen.id
+      @ship.delete
+      redirect to "/citizens/#{current_citizen.slug}"
     else
-      redirect to '/login'
+      redirect to '/ships'
     end
   end
 
