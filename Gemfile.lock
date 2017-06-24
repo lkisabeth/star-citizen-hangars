@@ -7,6 +7,8 @@ GEM
       activemodel (= 5.1.1)
       activesupport (= 5.1.1)
       arel (~> 8.0)
+    activerecord-postgresql-adapter (0.0.1)
+      pg
     activesupport (5.1.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -107,6 +109,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  activerecord-postgresql-adapter
   bcrypt
   capybara
   database_cleaner

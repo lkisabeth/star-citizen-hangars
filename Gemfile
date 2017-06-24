@@ -9,7 +9,6 @@ gem 'thin'
 gem 'shotgun'
 gem 'pry'
 gem 'bcrypt'
-gem 'tux'
 gem 'nokogiri'
 
 group :test do
@@ -19,8 +18,12 @@ group :test do
   gem 'database_cleaner'
 end
 
-group :development, :test do
-  gem 'sqlite3'
+group :development do
+ gem 'sqlite3'
+ gem "tux"
 end
 
-gem 'pg', group: :production
+group :production do
+ gem 'pg'
+ gem 'activerecord-postgresql-adapter'
+end
