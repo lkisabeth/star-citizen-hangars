@@ -11,7 +11,7 @@ configure :development do
 end
 
 configure :production do
-  db = URI.parse(ENV['postgres://ltrjpijzophvof:6fb2ebef39bc20f5f6b760e64bfbd09641f7b008f5d8733f1199ac3a3e5ac261@ec2-50-19-219-69.compute-1.amazonaws.com:5432/dbd6fu5cgpcqtp'] || 'postgres://localhost/mydb')
+  db = URI.parse(ENV['postgres://kkwphefkmktlbn:a3a700f56ad25153522598488c8ba220a0f114114701cd85f97497e47b2a6216@ec2-107-22-250-33.compute-1.amazonaws.com:5432/d8hvldpq3d4ock'] || 'postgres://localhost/mydb')
 
   ActiveRecord::Base.establish_connection(
     :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
