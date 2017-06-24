@@ -4,9 +4,7 @@ if ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
 end
 
-map "/public" do
- run Rack::Directory.new("./public")
-end
+set :public_folder, Proc.new { File.join(root, "public") }
 
 use Rack::MethodOverride
 
